@@ -150,7 +150,7 @@
     table-layout: fixed;
     width: 100%;
     height: calc(100% - 30px);
-    background-color: #FFF;
+    background-color: #FAFAFA;
     font-size: 14px;
 }
 
@@ -162,7 +162,7 @@
 .ngxmdp .monthcell,
 .ngxmdp .yearcell {
     border-collapse: collapse;
-    color: #003366;
+    color: #000;
     line-height: 1.1;
 }
 
@@ -392,7 +392,7 @@
 }
 
 daycell currmonth highlight tablesingleday {
-    background-color: #46df8c;
+    background-color: #46df8c!important;
 }
 
 .ngxmdp .monthlabel,
