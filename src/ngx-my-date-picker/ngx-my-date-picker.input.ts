@@ -11,9 +11,9 @@ const NGX_DP_VALUE_ACCESSOR = {
     multi: true
 };
 
-enum CalToggle {Open = 1, CloseByDateSel = 2, CloseByCalBtn = 3, CloseByOutClick = 4, CloseByEsc = 5}
-enum Year {min = 1100, max = 9100}
-enum KeyCode {esc = 27, leftArrow = 37, rightArrow = 39}
+enum CalToggle { Open = 1, CloseByDateSel = 2, CloseByCalBtn = 3, CloseByOutClick = 4, CloseByEsc = 5 }
+enum Year { min = 1100, max = 9100 }
+enum KeyCode { esc = 27, leftArrow = 37, rightArrow = 39 }
 
 @Directive({
     selector: "[ngx-mydatepicker]",
@@ -35,48 +35,48 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
 
     // Default options
     private opts: IMyOptions = {
-        dayLabels: <IMyDayLabels> {su: "Sun", mo: "Mon", tu: "Tue", we: "Wed", th: "Thu", fr: "Fri", sa: "Sat"},
-        monthLabels: <IMyMonthLabels> {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun", 7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec"},
-        dateFormat: <string> "yyyy-mm-dd",
-        showTodayBtn: <boolean> true,
-        todayBtnTxt: <string> "Today",
-        firstDayOfWeek: <string> "mo",
-        satHighlight: <boolean> false,
-        sunHighlight: <boolean> true,
-        highlightDates: <Array<IMyDate>> [],
-        markCurrentDay: <boolean> true,
-        markCurrentMonth: <boolean> true,
-        markCurrentYear: <boolean> true,
-        monthSelector: <boolean> true,
-        yearSelector: <boolean> true,
-        disableHeaderButtons: <boolean> true,
-        showWeekNumbers: <boolean> false,
-        selectorHeight: <string> "232px",
-        selectorWidth: <string> "252px",
-        disableUntil: <IMyDate> {year: 0, month: 0, day: 0},
-        disableSince: <IMyDate> {year: 0, month: 0, day: 0},
-        disableDates: <Array<IMyDate>> [],
-        enableDates: <Array<IMyDate>> [],
-        markDates: <Array<IMyMarkedDates>> [],
-        markWeekends: <IMyMarkedDate> {},
-        disableDateRanges: <Array<IMyDateRange>> [],
-        disableWeekends: <boolean> false,
-        alignSelectorRight: <boolean> false,
-        openSelectorTopOfInput: <boolean> false,
-        closeSelectorOnDateSelect: <boolean> true,
-        minYear: <number> Year.min,
-        maxYear: <number> Year.max,
-        showSelectorArrow: <boolean> true,
-        ariaLabelPrevMonth: <string> "Previous Month",
-        ariaLabelNextMonth: <string> "Next Month",
-        ariaLabelPrevYear: <string> "Previous Year",
-        ariaLabelNextYear: <string> "Next Year",
+        dayLabels: <IMyDayLabels>{ su: "Sun", mo: "Mon", tu: "Tue", we: "Wed", th: "Thu", fr: "Fri", sa: "Sat" },
+        monthLabels: <IMyMonthLabels>{ 1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun", 7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec" },
+        dateFormat: <string>"yyyy-mm-dd",
+        showTodayBtn: <boolean>true,
+        todayBtnTxt: <string>"Today",
+        firstDayOfWeek: <string>"mo",
+        satHighlight: <boolean>false,
+        sunHighlight: <boolean>true,
+        highlightDates: <Array<IMyDate>>[],
+        markCurrentDay: <boolean>true,
+        markCurrentMonth: <boolean>true,
+        markCurrentYear: <boolean>true,
+        monthSelector: <boolean>true,
+        yearSelector: <boolean>true,
+        disableHeaderButtons: <boolean>true,
+        showWeekNumbers: <boolean>false,
+        selectorHeight: <string>"232px",
+        selectorWidth: <string>"252px",
+        disableUntil: <IMyDate>{ year: 0, month: 0, day: 0 },
+        disableSince: <IMyDate>{ year: 0, month: 0, day: 0 },
+        disableDates: <Array<IMyDate>>[],
+        enableDates: <Array<IMyDate>>[],
+        markDates: <Array<IMyMarkedDates>>[],
+        markWeekends: <IMyMarkedDate>{},
+        disableDateRanges: <Array<IMyDateRange>>[],
+        disableWeekends: <boolean>false,
+        alignSelectorRight: <boolean>false,
+        openSelectorTopOfInput: <boolean>false,
+        closeSelectorOnDateSelect: <boolean>true,
+        minYear: <number>Year.min,
+        maxYear: <number>Year.max,
+        showSelectorArrow: <boolean>true,
+        ariaLabelPrevMonth: <string>"Previous Month",
+        ariaLabelNextMonth: <string>"Next Month",
+        ariaLabelPrevYear: <string>"Previous Year",
+        ariaLabelNextYear: <string>"Next Year",
     };
 
     onChangeCb: (_: any) => void = () => { };
     onTouchedCb: () => void = () => { };
 
-    constructor(private utilService: UtilService, private vcRef: ViewContainerRef, private cfr: ComponentFactoryResolver, private renderer: Renderer, private cdr: ChangeDetectorRef, private elem: ElementRef) {}
+    constructor(private utilService: UtilService, private vcRef: ViewContainerRef, private cfr: ComponentFactoryResolver, private renderer: Renderer, private cdr: ChangeDetectorRef, private elem: ElementRef) { }
 
     @HostListener("keyup", ["$event"]) onKeyUp(evt: KeyboardEvent) {
         if (evt.keyCode === KeyCode.leftArrow || evt.keyCode === KeyCode.rightArrow) {
@@ -168,7 +168,9 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
         this.preventClose = true;
         this.cdr.detectChanges();
         if (this.cRef === null) {
+
             let cf = this.cfr.resolveComponentFactory(NgxMyDatePicker);
+
             this.cRef = this.vcRef.createComponent(cf);
             this.cRef.instance.initialize(
                 this.opts,
@@ -179,17 +181,22 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
                     this.emitDateChanged(dm);
                     this.updateModel(dm);
                     if (close) {
+                        console.log('in')
                         this.closeSelector(CalToggle.CloseByDateSel);
                     }
                 },
                 (cvc: IMyCalendarViewChanged) => {
+                    console.log('try');
+
                     this.emitCalendarChanged(cvc);
                 },
                 () => {
+                    console.log('2')
                     this.closeSelector(CalToggle.CloseByEsc);
                 }
             );
             this.emitCalendarToggle(CalToggle.Open);
+
         }
         setTimeout(() => {
             this.preventClose = false;
@@ -197,7 +204,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     }
 
     public closeCalendar(): void {
-       // this.closeSelector(CalToggle.CloseByCalBtn);
+        this.closeSelector(CalToggle.CloseByCalBtn);
     }
 
     public toggleCalendar(): void {
@@ -205,12 +212,12 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
             this.openCalendar();
         }
         else {
-          //  this.closeSelector(CalToggle.CloseByCalBtn);
+            this.closeSelector(CalToggle.CloseByCalBtn);
         }
     }
 
     public clearDate(): void {
-        this.emitDateChanged({date: {year: 0, month: 0, day: 0}, jsdate: null, formatted: "", epoc: 0});
+        this.emitDateChanged({ date: { year: 0, month: 0, day: 0 }, jsdate: null, formatted: "", epoc: 0 });
         this.emitInputFieldChanged("", false);
         this.onChangeCb(null);
         this.onTouchedCb();
@@ -219,12 +226,61 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     }
 
     private closeSelector(reason: number): void {
-        // if (this.cRef !== null) {
-        //     this.vcRef.remove(this.vcRef.indexOf(this.cRef.hostView));
-        //     this.cRef = null;
-        //     this.emitCalendarToggle(reason);
-        // }
+        //    // this.cRef = null;
+        //     // if (this.cRef !== null) {
+        //         // this.vcRef.remove(this.vcRef.indexOf(this.cRef.hostView));
+        //          this.cRef.instance.initialize( this.opts,
+        //             this.defaultMonth,
+        //             this.elem.nativeElement.value,
+        //             this.elem.nativeElement.offsetHeight,
+        //             (dm: IMyDateModel, close: boolean) => {
+        //                 this.emitDateChanged(dm);
+        //                 this.updateModel(dm);
+        //                 if (close) {
+        //                     console.log('in')
+        //                     this.closeSelector(CalToggle.CloseByDateSel);
+        //                 }
+        //             },
+        //             (cvc: IMyCalendarViewChanged) => {
+        //                 console.log('try');
+
+        //                 this.emitCalendarChanged(cvc);
+        //             },
+        //             () => {
+        //                  console.log('2')
+        //                 this.closeSelector(CalToggle.CloseByEsc);
+        //             })
+        //         // this.emitCalendarToggle(reason);
+        //          //this.openCalendar();
+
+        //     // }
     }
+
+    public refresh() {
+        console.log('refresh');
+        this.cRef.instance.initialize(this.opts,
+            this.defaultMonth,
+            this.elem.nativeElement.value,
+            this.elem.nativeElement.offsetHeight,
+            (dm: IMyDateModel, close: boolean) => {
+                this.emitDateChanged(dm);
+                this.updateModel(dm);
+                if (close) {
+                    console.log('in')
+                    this.closeSelector(CalToggle.CloseByDateSel);
+                }
+            },
+            (cvc: IMyCalendarViewChanged) => {
+                console.log('try');
+
+                this.emitCalendarChanged(cvc);
+            },
+            () => {
+                console.log('2')
+                this.closeSelector(CalToggle.CloseByEsc);
+            });
+    }
+
 
     private updateModel(model: IMyDateModel): void {
         this.onChangeCb(model);
@@ -242,7 +298,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     }
 
     private emitInputFieldChanged(value: string, valid: boolean): void {
-        this.inputFieldChanged.emit({value: value, dateFormat: this.opts.dateFormat, valid: valid});
+        this.inputFieldChanged.emit({ value: value, dateFormat: this.opts.dateFormat, valid: valid });
     }
 
     private emitCalendarChanged(cvc: IMyCalendarViewChanged) {
@@ -254,6 +310,6 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     }
 
     private jsDateToMyDate(date: Date): IMyDate {
-        return {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()};
+        return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
     }
 }
