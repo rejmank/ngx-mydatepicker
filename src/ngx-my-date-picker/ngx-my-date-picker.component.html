@@ -1,6 +1,6 @@
 <div class="ngxmdp">
     <div class="selector" #selectorEl [ngxfocus]="1" [ngStyle]="{'width': opts.selectorWidth, 'height' : opts.selectorHeight, 'bottom': opts.openSelectorTopOfInput?((inputHeight + 2)+'px') : 'initial', 'right': opts.alignSelectorRight ? '0' : 'initial'}"
-        [ngClass]="{'selectorarrow': opts.showSelectorArrow, 'selectorarrowleft': opts.showSelectorArrow&&!opts.alignSelectorRight, 'selectorarrowright': opts.showSelectorArrow&&opts.alignSelectorRight}" (keyup)="onCloseSelector($event)" tabindex="0">
+        (keyup)="onCloseSelector($event)" tabindex="0">
         <table class="header">
             <tr>
                 <td>
