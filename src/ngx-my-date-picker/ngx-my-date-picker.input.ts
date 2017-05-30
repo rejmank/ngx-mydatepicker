@@ -197,7 +197,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     }
 
     public closeCalendar(): void {
-        this.closeSelector(CalToggle.CloseByCalBtn);
+       // this.closeSelector(CalToggle.CloseByCalBtn);
     }
 
     public toggleCalendar(): void {
@@ -205,7 +205,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
             this.openCalendar();
         }
         else {
-            this.closeSelector(CalToggle.CloseByCalBtn);
+          //  this.closeSelector(CalToggle.CloseByCalBtn);
         }
     }
 
@@ -219,11 +219,11 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     }
 
     private closeSelector(reason: number): void {
-        if (this.cRef !== null) {
-            this.vcRef.remove(this.vcRef.indexOf(this.cRef.hostView));
-            this.cRef = null;
-            this.emitCalendarToggle(reason);
-        }
+        // if (this.cRef !== null) {
+        //     this.vcRef.remove(this.vcRef.indexOf(this.cRef.hostView));
+        //     this.cRef = null;
+        //     this.emitCalendarToggle(reason);
+        // }
     }
 
     private updateModel(model: IMyDateModel): void {
